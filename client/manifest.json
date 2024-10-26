@@ -1,0 +1,36 @@
+{
+    "manifest_version": 3,
+    "name": "Yad2 Scrapper",
+    "description": "Base Level Extension",
+    "version": "1.0",
+    "action": {
+      "default_popup": "./popup/popup.html",
+      "default_icon": "./images/yad2Logo.png"
+    },
+    "content_scripts": [
+      {
+        "matches": ["https://www.yad2.co.il/*"],
+        "js": ["content.js"],
+        "run_at": "document_end"
+      }
+    ],
+    "permissions": [
+      "activeTab",
+      "scripting"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "web_accessible_resources": [
+        {
+          "resources": [
+            "/images/*"
+          ],
+          "matches": [
+            "https://www.yad2.co.il/*"
+          ]
+        }
+      ]
+    
+  }
+  
