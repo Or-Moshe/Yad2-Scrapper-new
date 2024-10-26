@@ -31,7 +31,7 @@ const express = require('express')
 const cors = require('cors');
 const {writeToExcel} = require('./fileWriter');
 const app = express();
-const port = 8000;
+const PORT = 8000;
 
 app.use(cors());
 app.use(express.json()); // This will parse JSON payloads
@@ -51,12 +51,12 @@ app.post('/selling', async(req, res) => {
 
 })
 
-app.listen(port, async() => {
+app.listen(PORT, async() => {
     try {
         db = await connectToDb();
         
-        console.log(`Example app listening on port ${port}`)
+        console.log(`Example app listening on port ${PORT}`)
     } catch (error) {
-        console.error('Error connecting to the database:', err);
+        console.error('Error connecting to the database:', error);
     }
 })
