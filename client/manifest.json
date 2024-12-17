@@ -9,12 +9,13 @@
     },
     "content_scripts": [
       {
-        "matches": ["https://www.yad2.co.il/*"],
-        "js": ["content.js"],
-        "run_at": "document_end"
+        "matches": ["https://www.yad2.co.il/*", "https://www.facebook.com/*"],
+        "js": ["content.js", "manager.js", "facebook.js", "yad2.js"],
+        "run_at": "document_start"
       }
     ],
     "permissions": [
+      "windows",
       "activeTab",
       "scripting"
     ],
@@ -27,7 +28,7 @@
             "/images/*"
           ],
           "matches": [
-            "https://www.yad2.co.il/*"
+            "https://www.yad2.co.il/*", "https://www.facebook.com/*"
           ]
         }
       ]

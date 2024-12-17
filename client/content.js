@@ -1,10 +1,22 @@
 
+const HOST_NAMES = ['facebook', 'yad2'];
+
+//after ole stylesheet loaded
+window.onload = () => {
+    console.log("window.onload");
+    const host = window.location.hostname.split(".")[1];
+    if(HOST_NAMES.includes(host)){
+        manager[host].get_items();
+    }
+};
+
+
 const sendToServer = async(data) => {
     console.log(data);
     try {
-        const request = new Request("http://127.0.0.1:8000/selling", {
+        const request = new Request("http://127.0.0.1:3000/selling", {
             method: "POST",
-            headers: {'Content-Type': 'application/json'}, // Make sure to set your headers correctly
+            headers: {'Content-Type': 'application/json', }, // Make sure to set your headers correctly
             body: JSON.stringify( data )
         });
         const response = await fetch(request);
@@ -91,7 +103,6 @@ const getItems = async() => {
     });
     const data = (await Promise.all(dataPromises)).filter(item => item !== undefined); // Filter out undefined
     console.log(data);
-    sendToServer(data);
+    //sendToServer(data);
 };
 
-getItems();
