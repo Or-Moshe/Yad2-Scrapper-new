@@ -31,14 +31,18 @@ const express = require('express')
 const cors = require('cors');
 const {writeToExcel} = require('./fileWriter');
 const app = express();
-const PORT = 8000;
-
+const PORT = 3000;
+//
 app.use(cors());
 app.use(express.json()); // This will parse JSON payloads
 
+app.post('/hello', async(req, res) => {
+    res.send({statusCode: 200, message: "hello"});
+});
+
 app.post('/selling', async(req, res) => {
     try {
-
+        console.log("upsert to sellingAssets");
         // Insert into the 'cities' collection
         await upsertManyIntoCollection('sellingAssets', req.body);
         await writeToExcel(req.body);
@@ -46,7 +50,7 @@ app.post('/selling', async(req, res) => {
         res.send({statusCode: 200, message: "succeed"})
     } catch (error) {
         console.log(error);
-        res.send({statusCode: 201, message: error})
+        res.send({statusCode: 500, message: error})
     }
 
 })
@@ -54,7 +58,6 @@ app.post('/selling', async(req, res) => {
 app.listen(PORT, async() => {
     try {
         db = await connectToDb();
-        
         console.log(`Example app listening on port ${PORT}`)
     } catch (error) {
         console.error('Error connecting to the database:', error);
