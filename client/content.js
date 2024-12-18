@@ -2,13 +2,13 @@
 const HOST_NAMES = ['facebook', 'yad2'];
 
 //after ole stylesheet loaded
-window.onload = () => {
+document.addEventListener('DOMContentLoaded', function() {
     console.log("window.onload");
     const host = window.location.hostname.split(".")[1];
     if(HOST_NAMES.includes(host)){
         manager[host].get_items();
     }
-};
+});
 
 
 const sendToServer = async(data) => {

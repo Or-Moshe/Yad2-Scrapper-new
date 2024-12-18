@@ -62,4 +62,16 @@ const yad2 = {
         console.log(data);
         sendToServer(data);
     }
+
 };
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const submitButton = document.querySelector('form button[type="submit"]');
+    const navBar = document.querySelector('[data-nagish="pagination-navbar"]');
+
+    //const feedList = document.querySelector('[data-testid="feed-list"]');
+
+    submitButton.addEventListener('click', () => setTimeout(() => yad2.getItems(), 3000));
+    navBar.addEventListener('click', () => setTimeout(() => yad2.getItems(), 3000));
+});
